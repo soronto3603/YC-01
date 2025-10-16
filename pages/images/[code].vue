@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen flex flex-col items-center justify-start pt-8">
+  <div class="min-h-screen flex flex-col items-center justify-start">
     <div class="w-full max-w-[600px] px-4">
       <!-- 이미지 -->
       <div v-if="imageExists" class="text-center">
@@ -82,22 +82,53 @@ watch(() => route.params.code, (newCode) => {
 <style scoped>
 /* 출력 시 스타일 */
 @media print {
-  .container {
-    max-width: none !important;
+  * {
     margin: 0 !important;
     padding: 0 !important;
   }
   
-  .bg-gray-50 {
-    background: white !important;
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
   }
   
-  .shadow-lg {
-    box-shadow: none !important;
+  .min-h-screen {
+    min-height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
   
-  .rounded-lg {
-    border-radius: 0 !important;
+  .flex {
+    display: flex !important;
+  }
+  
+  .items-center {
+    align-items: center !important;
+  }
+  
+  .justify-start {
+    justify-content: flex-start !important;
+  }
+  
+  .text-center {
+    text-align: center !important;
+  }
+  
+  .pt-8 {
+    padding-top: 0 !important;
+  }
+  
+  .px-4 {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .mt-8 {
+    margin-top: 0 !important;
+  }
+  
+  .pb-40 {
+    padding-bottom: 0 !important;
   }
   
   /* 출력 버튼 숨기기 */
@@ -105,11 +136,20 @@ watch(() => route.params.code, (newCode) => {
     display: none !important;
   }
   
-  /* 이미지만 출력 */
+  /* 이미지 스타일 */
   img {
     max-width: 100% !important;
     height: auto !important;
     page-break-inside: avoid;
+    page-break-after: avoid;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* 페이지 여백 제거 */
+  @page {
+    margin: 0;
+    size: A4;
   }
 }
 </style>
