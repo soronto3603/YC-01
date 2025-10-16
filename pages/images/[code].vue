@@ -1,47 +1,24 @@
 <template>
-  <div class="min-h-screen bg-gray-50 py-8">
-    <div class="container mx-auto px-4">
-
-      <!-- 이미지 컨테이너 -->
-      <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-        <div class="p-6">
-          <div v-if="imageExists" class="text-center">
-            <img 
-              :src="imageUrl" 
-              :alt="`이미지 ${code}`"
-              class="max-w-full h-auto mx-auto rounded-lg shadow-md"
-              @load="onImageLoad"
-              @error="onImageError"
-            />
-          </div>
-          
-          <div v-else class="text-center py-16">
-            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
-              </svg>
-            </div>
-            <h3 class="text-xl font-semibold text-gray-900 mb-2">이미지를 찾을 수 없습니다</h3>
-            <p class="text-gray-600 mb-4">코드 "{{ code }}"에 해당하는 이미지가 존재하지 않습니다.</p>
-            <button 
-              @click="$router.push('/')"
-              class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200"
-            >
-              홈으로 돌아가기
-            </button>
-          </div>
-        </div>
+  <div class="min-h-screen flex flex-col items-center justify-start pt-8">
+    <div class="w-full max-w-[600px] px-4">
+      <!-- 이미지 -->
+      <div v-if="imageExists" class="text-center">
+        <img 
+          :src="imageUrl" 
+          :alt="`이미지 ${code}`"
+          class="w-full max-w-[600px] h-auto"
+          @load="onImageLoad"
+          @error="onImageError"
+        />
       </div>
-
+      
       <!-- 출력 버튼 (g로 끝나는 파일에만 표시) -->
-      <div v-if="isPrintFile && imageExists" class="mt-8 text-center">
+      <div v-if="isPrintFile && imageExists" class="mt-8 text-center pb-40">
         <button 
           @click="printImage"
-          class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition duration-200 flex items-center mx-auto"
+          class="px-8 py-3 text-white font-semibold rounded-2xl"
+          style="background-color: rgb(51, 51, 51);"
         >
-          <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
-          </svg>
           출력하기
         </button>
       </div>
